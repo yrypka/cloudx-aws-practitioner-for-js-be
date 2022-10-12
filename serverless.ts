@@ -8,7 +8,7 @@ const serverlessConfiguration: AWS = {
   app: 'cloudx-aws-practitioner-for-js',
   service: 'products-service',
   frameworkVersion: '3',
-  plugins: ['serverless-auto-swagger', 'serverless-esbuild'],
+  plugins: ['serverless-auto-swagger', 'serverless-esbuild', 'serverless-offline'],
   provider: {
     name: 'aws',
     runtime: 'nodejs16.x',
@@ -39,6 +39,11 @@ const serverlessConfiguration: AWS = {
       define: { 'require.resolve': undefined },
       platform: 'node',
       concurrency: 10,
+    },
+    'serverless-offline': {
+      httpPort: 8000,
+      showDuration: true,
+      noPrependStageInUrl: true,
     },
   },
 };
