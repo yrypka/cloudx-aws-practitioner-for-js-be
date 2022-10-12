@@ -8,7 +8,7 @@ const serverlessConfiguration: AWS = {
   app: 'cloudx-aws-practitioner-for-js',
   service: 'products-service',
   frameworkVersion: '3',
-  plugins: ['serverless-esbuild'],
+  plugins: ['serverless-auto-swagger', 'serverless-esbuild'],
   provider: {
     name: 'aws',
     runtime: 'nodejs16.x',
