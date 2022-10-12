@@ -4,14 +4,17 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serverless:remove": "sls remove"
   },
   "engines": {
     "node": ">=14.15.0"
   },
   "dependencies": {
     "@middy/core": "^2.5.3",
-    "@middy/http-json-body-parser": "^2.5.3"
+    "@middy/http-error-handler": "^3.6.0",
+    "@middy/http-json-body-parser": "^2.5.3",
+    "http-errors": "^2.0.0"
   },
   "devDependencies": {
     "@serverless/typescript": "^3.0.0",
