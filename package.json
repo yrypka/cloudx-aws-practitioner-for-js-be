@@ -9,7 +9,7 @@
     "serverless:remove": "sls remove"
   },
   "engines": {
-    "node": ">=14.15.0"
+    "node": ">=16.0.0"
   },
   "dependencies": {
     "@middy/core": "^2.5.3",
