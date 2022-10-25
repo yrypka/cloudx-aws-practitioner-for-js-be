@@ -1,12 +1,14 @@
 import type { AWS } from '@serverless/typescript';
 
-import hello from '@functions/hello';
+import getProductsById from '@functions/getProductsById';
+import getProductsList from '@functions/getProductsList';
 
 const serverlessConfiguration: AWS = {
   org: 'yrypka',
+  app: 'cloudx-aws-practitioner-for-js',
   service: 'products-service',
   frameworkVersion: '3',
-  plugins: ['serverless-esbuild'],
+  plugins: ['serverless-auto-swagger', 'serverless-esbuild', 'serverless-offline'],
   provider: {
     name: 'aws',
     runtime: 'nodejs16.x',
@@ -22,7 +24,10 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { hello },
+  functions: {
+    getProductsById,
+    getProductsList,
+  },
   package: { individually: true },
   custom: {
     esbuild: {
@@ -34,6 +39,11 @@ const serverlessConfiguration: AWS = {
       define: { 'require.resolve': undefined },
       platform: 'node',
       concurrency: 10,
+    },
+    'serverless-offline': {
+      httpPort: 8000,
+      showDuration: true,
+      noPrependStageInUrl: true,
     },
   },
 };
