@@ -28,6 +28,3 @@ workflows:
     jobs:
       - node/test:
           version: 16.14.2
-      - deploy:
-          requires:
-            - node/test
