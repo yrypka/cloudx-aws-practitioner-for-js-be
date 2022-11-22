@@ -1,30 +1,23 @@
-version: 2.1
-
+version: '2.1'
 orbs:
-  # aws-cli: circleci/aws-cli@3.1
+  aws-cli: circleci/aws-cli@3.1
   node: circleci/node@5.0.2
-  # serverless-framework: circleci/serverless-framework@2.0
-
+  serverless-framework: circleci/serverless-framework@2.0
 jobs:
-  build_and_test:
-    executor: node/default
+  deploy:
+    executor: serverless-framework/default
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: npm
+      - aws-cli/setup
+      - serverless-framework/setup
       - run:
-          command: npm run test
-          name: Run tests
-      - run:
-          command: npm run build
-          name: Build app
-      - persist_to_workspace:
-          root: ~/project
-          paths:
-            - .
-
+          command: serverless deploy -v
+          name: deploy
 workflows:
   deploy:
     jobs:
       - node/test:
           version: 16.14.2
+      - deploy:
+          requires:
+            - node/test
